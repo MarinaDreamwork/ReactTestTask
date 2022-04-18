@@ -1,11 +1,18 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getImages} from './redux/actions/actionCreator';
 
 function App() {
-  const store = useSelector(store => store);
-  console.log('store', store);
+  //const count = useSelector(store => store?.counter?.count);
+
+  const dispatch = useDispatch();
+  const handleImages = () => {
+    dispatch(getImages());
+  }
+
   return (
     <div className="App">
-      Привет! Стартовало выполнение тестового задания!
+      <button onClick={handleImages}>Get images</button>
+  
     </div>
   );
 }
