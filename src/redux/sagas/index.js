@@ -1,10 +1,16 @@
-import { takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, call } from 'redux-saga/effects';
 import { getImages } from '../../api/index';
-import { GET_IMAGES } from '../constants';
+import { setImages } from '../actions/actionCreator';
+import { GET_IMAGES, SET_IMAGES_ERROR } from '../constants';
 
 export function* workerSaga() {
-  const data = yield getImages();
-  console.log('data', data);
+  try {
+    const data  = yield call(getImages);
+    yield put(setImages(data));
+  } catch {
+    yield put({type: SET_IMAGES_ERROR, payload: 'Error fetching images'});
+  }
+ 
 }
 
 export function* watchClickSaga() {

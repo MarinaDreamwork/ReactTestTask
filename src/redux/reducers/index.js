@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux';
-import { counter } from './counter';
-
-// const test = (state = {}, action) => {
-//   return state;
-// }
+import images from './images';
+import imagesError from './error';
 
 const reducer = combineReducers({
-  counter
+  images,
+  imagesError
 });
 
 export default reducer;
