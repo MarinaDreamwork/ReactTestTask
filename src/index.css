@@ -39,6 +39,10 @@ code {
   margin-bottom: 0;
 }
 
+.nav a {
+  
+}
+
 .offcanvas {
   background-color: rgb(249, 244, 244);
 }
@@ -54,7 +58,15 @@ code {
 
 .image-item {
   box-shadow: 3px -2px 5px grey;
+  cursor: pointer;
 }
+
+.selected {
+  transition: all 0.5s;
+  width: 200px;
+  height: 200px;
+}
+
 
 
 

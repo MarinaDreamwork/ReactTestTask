@@ -1,10 +1,11 @@
 import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 const NavigationMenu = () => {
   return (
-    <Nav defaultActiveKey="/home" className="flex-column mt-3">
-      <Nav.Link eventKey="link-1">Галерея</Nav.Link>
-      <Nav.Link eventKey="link-2">Обо мне</Nav.Link>
+    <Nav defaultActiveKey="/" className="flex-column mt-3 p-3">
+      <NavLink className='pb-3' to="/galery">Галерея</NavLink>
+      <NavLink to="/about_me">Обо мне</NavLink>
     </Nav>
   )
 }
