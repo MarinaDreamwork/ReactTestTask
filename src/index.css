@@ -27,7 +27,8 @@ code {
 }
 
 .personal-data img {
-  border-radius: 50%;
+  border-radius: 7px;
+  box-shadow: 3px -2px 5px grey;
 }
 
 .personal-data p:nth-child(2){
@@ -42,6 +43,18 @@ code {
   background-color: rgb(249, 244, 244);
 }
 
+.list-group {
+  background-color: rgb(237, 233, 233);
+  box-shadow: 3px -2px 5px grey;
+}
+
+.category-item {
+  cursor: pointer;
+}
+
+.image-item {
+  box-shadow: 3px -2px 5px grey;
+}
 
 
 
