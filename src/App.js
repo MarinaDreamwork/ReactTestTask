@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Col, Container, Offcanvas, Row } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import MenuBurger from './components/menuBurger';
+import NavigationMenu from './components/NavigationMenu';
+import PersonalData from './components/PersonalData';
 import { getImages} from './redux/actions/actionCreator';
 
 function App() {
@@ -29,14 +31,13 @@ function App() {
         </Row>
       </Container>
        <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
+        <Offcanvas.Header className='pb-0' closeButton>
           <Offcanvas.Title>
-            Navigation Menu
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <p className='mb-1'>Marina Trushina</p>
-          <p>silaevamo@gmail.com</p>
+          <PersonalData />
+          <NavigationMenu />
         </Offcanvas.Body>
       </Offcanvas>
       <button onClick={handleImages}>Get images</button>
