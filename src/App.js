@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { Col, Container, Offcanvas, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import Gallery from './components/Gallery';
 import Header from './components/Header';
-import MenuBurger from './components/menuBurger';
-import NavigationMenu from './components/NavigationMenu';
 import OffcanvasWrapper from './components/OffcanvasWrapper';
-import { getImages} from './redux/actions/actionCreator';
+import { getImages, openCanvas, closeCanvas} from './redux/actions/actionCreator';
 import { Routes } from 'react-router';
 import { Route } from 'react-router-dom';
 import Home from './pages/home';
@@ -18,6 +16,8 @@ function App() {
   const images = useSelector(store => store?.images?.images[0] || []);
   const imagesGallery = images.slice(0, 24); // вынести в доп.функцию
 
+  const isOpen = useSelector(store => store?.offcanvas?.isOpen);
+
   const history = createBrowserHistory();
 
   const dispatch = useDispatch();
@@ -26,10 +26,10 @@ function App() {
     dispatch(getImages());
   }
 
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleShow = () => dispatch(openCanvas(true));
+  const handleClose = () => dispatch(closeCanvas(false));
 
   return (
     <BrowserRouter>
@@ -41,7 +41,7 @@ function App() {
           <Route path='about_me' element={<AboutMe />} />
         </Routes>
       </Container>
-      <OffcanvasWrapper handleClose={handleClose} show={show}/>
+      <OffcanvasWrapper handleClose={handleClose} show={isOpen}/>
    </BrowserRouter>
   );
 }

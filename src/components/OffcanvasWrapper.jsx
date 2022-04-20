@@ -3,6 +3,7 @@ import NavigationMenu from "./NavigationMenu";
 import PersonalData from "./PersonalData";
 
 const OffcanvasWrapper = ({ handleClose, show }) => {
+  
   return (
     <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header className='pb-0' closeButton>
@@ -11,7 +12,7 @@ const OffcanvasWrapper = ({ handleClose, show }) => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <PersonalData />
-          <NavigationMenu />
+          <NavigationMenu onHide={handleClose}/>
         </Offcanvas.Body>
       </Offcanvas>
   )
