@@ -1,46 +1,44 @@
-import { useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes} from "react-router";
+import { Link } from "react-router-dom";
+import { loadImages, setCurrentCategory, setCurrentImage, setImagesIntoCategories} from "../redux/actions/actionCreator";
 import { paginate } from "../utils/utils";
+import Details from "./Details";
 import ListGroupImages from "./ListGroupImages";
 import ListGroupWrapper from "./ListGroupWrapper";
 
-const Gallery = (props) => {
-  const { imagesGallery, onGetImages } = props;
-  const [currentCategory, setCurrentCategory] = useState();
-  const [imagesIntoCategories, setImagesIntoCategories] = useState();
+const Gallery = ({ loading }) => {
+  const images = useSelector(store => store?.images?.images || []);
+  const currentCategory = useSelector(store => store?.currentCategoryItem?.currentItem);
+  const currentImages = useSelector(store => store?.currentImageItem?.imagesId);
   const IMAGES_INTO_PAGE = 6;
+  const category = paginate(images, IMAGES_INTO_PAGE, currentCategory);
+
+  const dispatch = useDispatch();
 
   const handleChangeClick = (categoryIndex) => {
-    setCurrentCategory(categoryIndex);
-    onGetImages();
-    setImagesIntoCategories(paginate(imagesGallery, IMAGES_INTO_PAGE, categoryIndex));
+    dispatch(setCurrentCategory(categoryIndex));
+    dispatch(loadImages());
+    dispatch(setImagesIntoCategories(category))
   }
 
-    const handleImageClick = (event) => {
-      const {target} = event;
-      const parentElement = target.closest('.images-row');
-      console.log('parentElement', parentElement);
-      
-      target.classList.add('selected');
-      console.log(target);
-    //здесь нужно обработать клик на картинку:
-    //1. добавим класс для картинки, а в нем уже пропишем все css свойства
-    //2. показать кнопку (далее будет переход на новую страницу)
+    const handleImageClick = (id) => {
+    //здесь нужно обработать клик на картинку - передать объект по id в стор
+      console.log('id', id);
+      // найти по id
+    //setCurrentImage()
   }
 
-  // if(!imagesIntoCategories || imagesIntoCategories === []) {
-  //   
-  // }
-  
   return (
     <Row>
       <Col sm={2}>
-        <ListGroupWrapper currentCategory={currentCategory} onCategoryChange={handleChangeClick}/>
+        <ListGroupWrapper currentCategory={currentCategory} imagesByCategories={category} onCategoryChange={handleChangeClick} />
       </Col>
       <Col sm={10}>
         {
-          imagesIntoCategories ?
-          <ListGroupImages imagesIntoCategories={imagesIntoCategories} onImageClick={handleImageClick}/> :
+          images ?
+          <ListGroupImages imagesByCategories={category} onImageClick={handleImageClick} loading={loading} currentImages={currentImages} dispatch={dispatch}/> :
           null
         }
       </Col>

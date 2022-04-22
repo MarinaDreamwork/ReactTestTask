@@ -39,10 +39,6 @@ code {
   margin-bottom: 0;
 }
 
-.nav a {
-  
-}
-
 .offcanvas {
   background-color: rgb(249, 244, 244);
 }
@@ -62,12 +58,74 @@ code {
 }
 
 .selected {
+  position: absolute;
   transition: all 0.5s;
   width: 200px;
   height: 200px;
+  z-index: 2;
 }
 
+.button-details {
+  /* display: none; */
+  position: absolute;
+  top: 165px;
+  left: -200px;
+  width: 150px;
+  background: rgb(67, 70, 67);
+  z-index: 0;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 10px;
+}
 
+.button-details:hover {
+  color:rgb(203, 197, 190);
+}
 
+.nav-item {
+  text-decoration: none;
+  font-weight: bold;
+}
 
+.nav-item:hover {
+  color:rgb(124, 111, 179);
+}
 
+.about_me_container {
+  background: rgb(245, 240, 240);
+  border-radius: 5px;
+  box-shadow: 3px -2px 5px grey;
+}
+
+.about_me_avatar {
+  max-width: 200px;
+  border-radius: 50%;
+}
+
+.about_me_text {
+  text-indent: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.about_me_info {
+  font-weight: bold;
+}
+
+.about_me_name {
+  text-shadow: 1px -1px 2px green;
+  font-size: 17px;
+}
+
+.about_me_info p:nth-child(2) {
+  text-shadow: 1px -1px 2px black;
+}
+
+.skill {
+  background: grey;
+  border-radius: 10px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}

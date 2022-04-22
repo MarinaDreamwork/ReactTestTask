@@ -1,32 +1,23 @@
-import { useState } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
 import Gallery from './components/Gallery';
 import Header from './components/Header';
 import OffcanvasWrapper from './components/OffcanvasWrapper';
-import { getImages, openCanvas, closeCanvas} from './redux/actions/actionCreator';
-import { Routes } from 'react-router';
-import { Route } from 'react-router-dom';
+import { openCanvas, closeCanvas} from './redux/actions/actionCreator';
+import { Routes, Redirect } from 'react-router';
 import Home from './pages/home';
 import AboutMe from './components/AboutMe';
-import { createBrowserHistory} from 'history';
+import Details from './components/Details';
+// import { createBrowserHistory} from 'history';
 
 function App() {
-  const images = useSelector(store => store?.images?.images[0] || []);
-  const imagesGallery = images.slice(0, 24); // вынести в доп.функцию
-
   const isOpen = useSelector(store => store?.offcanvas?.isOpen);
+  const isLoading = useSelector(store => store?.images?.loading)
 
-  const history = createBrowserHistory();
+  //const history = createBrowserHistory();
 
   const dispatch = useDispatch();
-
-  const handleImages = () => {
-    dispatch(getImages());
-  }
-
-  // const [show, setShow] = useState(false);
 
   const handleShow = () => dispatch(openCanvas(true));
   const handleClose = () => dispatch(closeCanvas(false));
@@ -37,9 +28,11 @@ function App() {
         <Header onShow={handleShow}/>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/galery' element={<Gallery onGetImages={handleImages} imagesGallery={imagesGallery} onHide={handleClose}/>} />
+          <Route path='galery' element={<Gallery loading={isLoading} />} /> 
+          <Route path='details' element={<Details />} />
           <Route path='about_me' element={<AboutMe />} />
         </Routes>
+        <Link to="details" className='button-details p-1'>Подробнее...</Link>
       </Container>
       <OffcanvasWrapper handleClose={handleClose} show={isOpen}/>
    </BrowserRouter>
