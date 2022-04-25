@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ReactTestTask/static/css/main.7585a0a4.css",
+    "main.js": "/ReactTestTask/static/js/main.771beb1b.js",
+    "static/media/photo-avatar.jpg": "/ReactTestTask/static/media/photo-avatar.11138bd4ba2c3cf9e18c.jpg",
+    "index.html": "/ReactTestTask/index.html",
+    "static/media/burger.svg": "/ReactTestTask/static/media/burger.5a3fa432e255b6f180d43d2557f6c66a.svg",
+    "main.7585a0a4.css.map": "/ReactTestTask/static/css/main.7585a0a4.css.map",
+    "main.771beb1b.js.map": "/ReactTestTask/static/js/main.771beb1b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7585a0a4.css",
+    "static/js/main.771beb1b.js"
+  ]
+}
