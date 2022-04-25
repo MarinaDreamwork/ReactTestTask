@@ -1,4 +1,4 @@
-import { Button, ListGroup, ListGroupItem } from "react-bootstrap"
+import { ListGroup, ListGroupItem } from "react-bootstrap"
 import { useSelector } from "react-redux"
 
 const ListGroupWrapper = ({ currentCategory, onCategoryChange }) => {

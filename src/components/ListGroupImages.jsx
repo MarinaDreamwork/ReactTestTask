@@ -1,36 +1,29 @@
-import { Col, Row, Image, NavLink} from "react-bootstrap";
-import { Outlet, Route, Routes } from "react-router";
+import { Col, Row, Image } from "react-bootstrap";
 import { setCurrentImage } from "../redux/actions/actionCreator";
-import { choosingImage, modifyCurrentImage } from "../utils/utils";
-import Details from "./Details";
 import Preloader from "./Preloader";
 
-const ListGroupImages = ({ imagesByCategories, onImageClick, loading, currentImages, dispatch }) => {
+const ListGroupImages = ({ imagesByCategories, loading, currentImages, dispatch, buttonDetails }) => {
   console.log('imagesIntoCategories', imagesByCategories);
-  const buttonDetails = document.querySelector('.button-details');
-
+  
   const handleMouseEnter = (e) => {
-    choosingImage(e); // что делает эта ф-ция
-    console.log('e.target.id', e.target.id);
-    e.target.style.zIndex = '0';
+    console.log('e', e);
+    const {clientX, clientY} = e;
     dispatch(setCurrentImage(Number(e.target.id)));
-    buttonDetails.style.left = modifyCurrentImage(e.target.id);
+    buttonDetails.style.left = `${clientX - 50}px`;
+    buttonDetails.style.top = `${clientY-15}px`;
   }
   const handleMouseLeave = (e) => {
-    e.target.style.zIndex = '2';
     buttonDetails.style.left = '-200px'
   }
 
   return (
     <>
-      <Row className='images-row mt-3'>
+      <Row xl={6} lg={3} sm={2}>
         {
           loading ?
           <Preloader /> :
-          imagesByCategories.map(part => <Col key={part.id}><Image id={part.id} src={part.thumbnailUrl} className='image-item' onClick={() => onImageClick(part.id)} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}/></Col>)
+          imagesByCategories.map(part => <Col className='d-flex justify-content-sm-center p-xl-2 p-lg-3 images-row mt-3 p-sm-2' key={part.id}><Image id={part.id} src={part.thumbnailUrl} className='image-item' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}/></Col>)
         }
-      </Row>
-      <Row col={2}>
       </Row>
     </>
   )

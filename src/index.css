@@ -66,9 +66,8 @@ code {
 }
 
 .button-details {
-  /* display: none; */
   position: absolute;
-  top: 165px;
+  top: 0px;
   left: -200px;
   width: 150px;
   background: rgb(67, 70, 67);
@@ -128,4 +127,55 @@ code {
   font-weight: bold;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.details_id,
+.details_url_title,
+.details_url a,
+.details_id_link {
+  font-weight: bold;
+}
+
+.details_id_link {
+  color:blue;
+}
+
+.details_url a {
+  text-decoration: none;
+}
+
+.details_info_wrapper {
+  background:rgb(173, 162, 162);
+}
+
+.details_info {
+  background:rgb(237, 233, 233);
+}
+
+@media (max-width: 1200px) {
+  .details_image {
+    width: 500px;
+    /*height: 500px;*/
+  }
+}
+
+@media (max-width: 992px) {
+  .details_image {
+    width: 450px;
+  }
+} 
+
+@media (max-width: 768px) {
+  .details_image {
+    width: 400px;
+    /*height: 400px;*/
+  }
+}
+
+@media (max-width: 576px) {
+  .details_image {
+    width: 300px;
+    justify-content: center;
+    /*height: 300px;*/
+  }
 }

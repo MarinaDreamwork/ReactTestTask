@@ -1,10 +1,10 @@
-import { Row, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
 const Preloader = () => {
   return (
-    <Row className='justify-content-center mt-3'>
-      <Spinner animation='grow' variant='secondary'/>
-    </Row>
+    <>
+      <Spinner className='d-flex justify-content-center mt-3' animation='grow' variant='secondary'/>
+    </>
   )
 }
 export default Preloader;
